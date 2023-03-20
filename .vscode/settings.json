@@ -1,0 +1,8 @@
+{
+    "javascript.suggestionActions.enabled": false,
+    "typescript.suggestionActions.enabled": true,
+        "eslint.workingDirectories": [
+            "./client",
+     
+        ]
+}
