@@ -18,30 +18,21 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Video />
-        <div className={styles.grid}>
-          <a
-            href="https://github.com/SophXN"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Github <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>The hub of Git.</p>
-          </a>
 
-          <a
-            href="https://www.linkedin.com/in/sophia-x-nguyen/"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        <div className={styles.grid}>
+          <p className={styles.card}>
             <h2 className={inter.className}>
-              LinkedIn <span>-&gt;</span>
+              Resume <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>Reach out + connect!</p>
-          </a>
+            <p className={inter.className}>Meowmewomeomwoemoewmewow.</p>
+          </p>
+
+          <p className={styles.card}>
+            <h2 className={inter.className}>
+              Endorsements<span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>From people I&apos;ve worked with</p>
+          </p>
 
           <Link href="/projects/climate-x" className={styles.card}>
             <h2 className={inter.className}>
