@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { Inter } from "next/font/google";
+import Video from "../../components/Video";
 import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,6 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Video />
         <div className={styles.grid}>
           <a
             href="https://github.com/SophXN"
@@ -23,12 +26,31 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
+              Github <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>The hub of Git.</p>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/sophia-x-nguyen/"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              LinkedIn <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>Reach out + connect!</p>
+          </a>
+
+          <Link href="/projects/climate-x" className={styles.card}>
+            <h2 className={inter.className}>
+              Climate X <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
+              Active project on making climate education more digestable.
             </p>
-          </a>
+          </Link>
 
           <a
             href="https://github.com/SophXN"
@@ -37,39 +59,10 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
+              Prior Projects <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/SophXN"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/SophXN"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
+              Full stack projects created a few blue moons ago.
             </p>
           </a>
         </div>
