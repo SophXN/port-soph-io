@@ -1,7 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { Inter } from "next/font/google";
+
+import Menu from "../../components/Menu";
 import Video from "../../components/Video";
 import styles from "@/styles/Home.module.css";
 
@@ -16,48 +17,56 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <Video />
+      <Menu />
+      <div className={styles.containerWrapper}>
+        <main className={styles.container}>
+          <div className={styles.pageSection}>
+            <Video />
+          </div>
+          <div className={styles.pageSection}>
+            <div className={styles.grid}>
+              <Link href="/resume/resume" className={styles.card}>
+                <h2 className={inter.className}>
+                  Resume <span>-&gt;</span>
+                </h2>
+                <p className={inter.className}>Meowmewomeomwoemoewmewow.</p>
+              </Link>
 
-        <div className={styles.grid}>
-          <p className={styles.card}>
-            <h2 className={inter.className}>
-              Resume <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>Meowmewomeomwoemoewmewow.</p>
-          </p>
+              <Link href="/" className={styles.card}>
+                <h2 className={inter.className}>
+                  Endorsements<span>-&gt;</span>
+                </h2>
+                <p className={inter.className}>
+                  From people I&apos;ve worked with
+                </p>
+              </Link>
 
-          <p className={styles.card}>
-            <h2 className={inter.className}>
-              Endorsements<span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>From people I&apos;ve worked with</p>
-          </p>
+              <Link href="/projects/climate/climate-x" className={styles.card}>
+                <h2 className={inter.className}>
+                  Climate X <span>-&gt;</span>
+                </h2>
+                <p className={inter.className}>
+                  Active project on making climate education more digestable.
+                </p>
+              </Link>
 
-          <Link href="/projects/climate-x" className={styles.card}>
-            <h2 className={inter.className}>
-              Climate X <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Active project on making climate education more digestable.
-            </p>
-          </Link>
-
-          <a
-            href="https://github.com/SophXN"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Prior Projects <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Full stack projects created a few blue moons ago.
-            </p>
-          </a>
-        </div>
-      </main>
+              <Link
+                href="https://github.com/SophXN"
+                className={styles.card}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h2 className={inter.className}>
+                  Prior Projects <span>-&gt;</span>
+                </h2>
+                <p className={inter.className}>
+                  Full stack projects created a few blue moons ago.
+                </p>
+              </Link>
+            </div>
+          </div>
+        </main>
+      </div>
     </>
   );
 }
