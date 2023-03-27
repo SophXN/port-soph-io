@@ -3,10 +3,9 @@ import Link from "next/link";
 import { Inter } from "next/font/google";
 
 import Menu from "../../components/Menu";
-import Video from "../../components/Video";
+import Intro from "../../components/Intro";
 import styles from "@/styles/Home.module.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Resume from "./resume/resume";
 
 export default function Home() {
   return (
@@ -20,11 +19,12 @@ export default function Home() {
       <Menu />
       <div className={styles.containerWrapper}>
         <main className={styles.container}>
-          <div className={styles.pageSection}>
-            <Video />
+          <div id="home" className={styles.pageSection}>
+            <Intro />
           </div>
-          <div className={styles.pageSection}>
-            <div className={styles.grid}>
+          <div id="resume" className={styles.pageSection}>
+            <Resume />
+            {/* <div className={styles.grid}>
               <Link href="/resume/resume" className={styles.card}>
                 <h2 className={inter.className}>
                   Resume <span>-&gt;</span>
@@ -63,7 +63,7 @@ export default function Home() {
                   Full stack projects created a few blue moons ago.
                 </p>
               </Link>
-            </div>
+            </div> */}
           </div>
         </main>
       </div>
