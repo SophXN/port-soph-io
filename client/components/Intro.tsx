@@ -13,11 +13,17 @@ const Intro = () => {
         <source src="/clouds.mp4" type="video/mp4" />
       </video> */}
 
-      <div className="relative z-10 flex flex-col justify-center items-end text-white h-full">
+      <div className="z-10 flex flex-col justify-center items-center text-white h-full">
+        <p className="text-md px-10">👩🏻‍💻</p>
         <h1 className="font-mono text-4xl font-bold mb-4 px-10">
           sophie nguyen
         </h1>
-        <p className="text-lg px-10">full stack engineer</p>
+        <p className="text-md px-10">Fun Stack Engineer</p>
+        <p className="text-md px-10">
+          Developing web-based applications on the clock, and trying to outsmart
+          AI off the clock.
+          <br />
+        </p>
       </div>
     </div>
   );

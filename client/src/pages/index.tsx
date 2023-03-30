@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
-import { Inter } from "next/font/google";
 
 import Menu from "../../components/Menu";
 import Intro from "../../components/Intro";
@@ -17,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Menu />
-      <div className={styles.containerWrapper}>
+      <div id="finisher-header" className={styles.containerWrapper}>
         <main className={styles.container}>
           <div id="home" className={styles.pageSection}>
             <Intro />
