@@ -17,7 +17,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  width: 200vw;
+  /* if this is changed to 200vw, it will scroll horizontally */
+  width: 100vw;
   transform: rotate(90deg) translateY(-100vh);
   transform-origin: top left;
 }
