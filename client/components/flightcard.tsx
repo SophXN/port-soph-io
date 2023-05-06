@@ -3,34 +3,38 @@ import { Card } from "flowbite-react";
 import axios from "axios";
 
 const API_KEY = process.env.CLIMATIQ_API;
-const API_URL = "https://beta3.api.climatiq.io/estimate";
+const API_URL = "https://beta3.api.climatiq.io/travel/flights";
 
-interface Params {
-  energy: number;
-  energy_unit: string;
-}
-
-interface EmissionFactor {
-  activity_id: string;
-}
-
+type Flight = {
+  from: string;
+  to: string;
+  passengers: number;
+  class: string;
+};
 interface RequestBody {
-  emission_factor: EmissionFactor;
-  parameters: Params;
+  legs: Flight[];
 }
-export default function FactCard(): JSX.Element | null {
+
+export default function FlghtCard(): JSX.Element | null {
   const [estimate, setEstimate] = useState<number | null>(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const requestBody: RequestBody = {
-      emission_factor: {
-        activity_id: "electricity-energy_source_grid_mix",
-      },
-      parameters: {
-        energy: 4200,
-        energy_unit: "kWh",
-      },
+      legs: [
+        {
+          from: "BER",
+          to: "HAM",
+          passengers: 2,
+          class: "first",
+        },
+        {
+          from: "HAM",
+          to: "JFK",
+          passengers: 2,
+          class: "economy",
+        },
+      ],
     };
 
     axios
@@ -38,7 +42,15 @@ export default function FactCard(): JSX.Element | null {
         headers: { Authorization: `Bearer ${API_KEY}` },
       })
       .then((response) => {
-        setEstimate(Math.round(response.data.co2e));
+        let totalCo2e = 0;
+        totalCo2e = response.data.legs.reduce(
+          (acc: any, leg: { co2e: any }) => {
+            return acc + leg.co2e;
+          },
+          0
+        );
+
+        setEstimate(Math.round(totalCo2e));
         setIsLoading(false);
       })
       .catch((error) => {
@@ -55,8 +67,7 @@ export default function FactCard(): JSX.Element | null {
       <div>
         <Card style={{ width: "275px" }}>
           <h5 className="px-5 py-2 text-xl tracking-tight text-gray-900 dark:text-white">
-            The average UK household consumes 4.200 kWh of electricity every
-            year
+            One economy roundtrip flight from Berlin to New York.
           </h5>
           <p className="px-5 py-2 text-center font-normal text-gray-700 dark:text-gray-400">
             Carbon Estimate <br /> {estimate} kg CO2e

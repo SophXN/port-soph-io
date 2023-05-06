@@ -1,5 +1,6 @@
 import styles from "@/styles/Climate.module.css";
 import FactCard from "../../components/factcard";
+import FlghtCard from "../../components/flightcard";
 
 export default function ClimateTest() {
   return (
@@ -22,7 +23,7 @@ export default function ClimateTest() {
             <FactCard />
           </div>
           <div className="order-1">
-            <FactCard />
+            <FlghtCard />
           </div>
           <div className="order-1">
             <FactCard />
