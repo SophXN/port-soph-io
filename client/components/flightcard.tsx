@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "flowbite-react";
 import axios from "axios";
+import { Airport } from "./searchairport";
 
 const API_KEY = process.env.CLIMATIQ_API;
 const API_URL = "https://beta3.api.climatiq.io/travel/flights";
@@ -15,7 +16,14 @@ interface RequestBody {
   legs: Flight[];
 }
 
-export default function FlghtCard(): JSX.Element | null {
+type FlghtCardProps = {
+  departure: Airport;
+  arrival: Airport;
+};
+export default function FlghtCard({
+  departure,
+  arrival,
+}: FlghtCardProps): JSX.Element | null {
   const [estimate, setEstimate] = useState<number | null>(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,15 +31,15 @@ export default function FlghtCard(): JSX.Element | null {
     const requestBody: RequestBody = {
       legs: [
         {
-          from: "BER",
-          to: "HAM",
-          passengers: 2,
-          class: "first",
+          from: departure.code,
+          to: arrival.code,
+          passengers: 1,
+          class: "economy",
         },
         {
-          from: "HAM",
-          to: "JFK",
-          passengers: 2,
+          from: departure.code,
+          to: arrival.code,
+          passengers: 1,
           class: "economy",
         },
       ],
@@ -56,18 +64,19 @@ export default function FlghtCard(): JSX.Element | null {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [arrival, departure]);
 
   if (isLoading || estimate === null) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
     <>
       <div>
-        <Card style={{ width: "275px" }}>
+        <Card>
           <h5 className="px-5 py-2 text-xl tracking-tight text-gray-900 dark:text-white">
-            One economy roundtrip flight from Berlin to New York.
+            One economy roundtrip flight from {departure.name} to {arrival.name}
+            .
           </h5>
           <p className="px-5 py-2 text-center font-normal text-gray-700 dark:text-gray-400">
             Carbon Estimate <br /> {estimate} kg CO2e
