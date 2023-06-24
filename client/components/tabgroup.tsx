@@ -6,6 +6,7 @@ import { AiFillCar } from "react-icons/ai";
 import AirportSearch, { Airport, Direction } from "./searchairport";
 import FlightCard from "./flightcard";
 import { useState } from "react";
+import FlightOptions from "./flightoptions";
 
 export default function TabGroup() {
   const defaultState: Airport = {
@@ -23,11 +24,16 @@ export default function TabGroup() {
       setArrivalAirport(airport);
     }
   };
+
   return (
-    <Tabs.Group aria-label="Tabs with icons" style="underline">
-      <Tabs.Item active icon={BsFillAirplaneFill} title=" Air">
+    <Tabs.Group aria-label="Tabs with icons" style="underline" className="p-4">
+      <Tabs.Item
+        active
+        icon={BsFillAirplaneFill}
+        title={<span>&nbsp;&nbsp;&nbsp;Air</span>}
+      >
         <div className="rounded-lg bg-white-50 shadow-lg w-full">
-          <span className="font-medium text-gray-800 dark:text-white"></span>
+          <FlightOptions />
           <AirportSearch
             direction={Direction.Departure}
             handleAirportSelection={handleAirportSelection}
@@ -41,7 +47,7 @@ export default function TabGroup() {
           </div>
         </div>
       </Tabs.Item>
-      <Tabs.Item icon={AiFillCar} title="  Road">
+      <Tabs.Item icon={AiFillCar} title={<span>&nbsp;&nbsp;&nbsp;Road</span>}>
         <div>
           Carbon emissions from a trip taken on the road comparing electric vs a
           gas powered vehicle.{" "}

@@ -80,15 +80,6 @@ const AirportSearch: React.FC<AirportSearchProps> = ({
             value={searchDeparture}
             onChange={(e) => handleSearch(e, Direction.Departure)}
           />
-          <button
-            className="mt-2 py-2 px-4 bg-blue-500 text-white rounded"
-            onClick={() => {
-              setSelectedDeparture(null);
-              setSearchDeparture("");
-            }}
-          >
-            Change Departure Airport
-          </button>
         </>
       )}
       {direction === Direction.Arrival && (
@@ -105,15 +96,6 @@ const AirportSearch: React.FC<AirportSearchProps> = ({
             value={searchArrival}
             onChange={(e) => handleSearch(e, Direction.Arrival)}
           />
-          <button
-            className="mt-2 py-2 px-4 bg-blue-500 text-white rounded"
-            onClick={() => {
-              setSelectedArrival(null);
-              setSearchArrival("");
-            }}
-          >
-            Change Arrival Airport
-          </button>
         </>
       )}
       {filteredAirports.length > 0 && (
