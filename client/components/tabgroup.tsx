@@ -49,12 +49,8 @@ export default function TabGroup() {
       </Tabs.Item>
       <Tabs.Item icon={AiFillCar} title={<span>&nbsp;&nbsp;&nbsp;Road</span>}>
         <div>
-          Carbon emissions from a trip taken on the road comparing electric vs a
-          gas powered vehicle.{" "}
-          <span className="font-medium text-gray-800 dark:text-white"></span>.
-          Clicking another tab will toggle the visibility of this one for the
-          next. The tab JavaScript swaps classes to control the content
-          visibility and styling.
+          Coming Soon! Carbon emissions from a trip taken on the road comparing
+          electric vs a gas powered vehicle.{" "}
         </div>
       </Tabs.Item>
     </Tabs.Group>

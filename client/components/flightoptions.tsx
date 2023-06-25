@@ -4,17 +4,31 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { HiOutlineArrowsRightLeft } from "react-icons/hi2";
+import {
+  HiOutlineArrowsRightLeft,
+  HiArrowSmallRight,
+  HiArrowsPointingOut,
+} from "react-icons/hi2";
 
 export default function FlightOptions() {
-  const [tripType, setTripType] = React.useState("");
-  const [classType, setClassType] = React.useState("");
+  const [, setTripType] = React.useState("");
+  const [, setClassType] = React.useState("");
+  const [, setPassengerCount] = React.useState("1");
 
-  const handleTripChange = (event: SelectChangeEvent) => {
-    setTripType(event.target.value as string);
-  };
-  const handleClassChange = (event: SelectChangeEvent) => {
-    setClassType(event.target.value as string);
+  const handleFlightOption = (event: SelectChangeEvent, option: string) => {
+    switch (option) {
+      case "tripType":
+        setTripType(event.target.value as string);
+        break;
+      case "classType":
+        setClassType(event.target.value as string);
+        break;
+      case "passengerCount":
+        setPassengerCount(event.target.value as string);
+        break;
+      default:
+        setTripType("");
+    }
   };
 
   return (
@@ -24,14 +38,17 @@ export default function FlightOptions() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={classType}
-          label="Flight class"
-          onChange={handleClassChange}
+          defaultValue={"1"}
+          label="passenger count"
+          onChange={(e: SelectChangeEvent) =>
+            handleFlightOption(e, "passengerCount")
+          }
+          className="flex flex-row items-center"
           style={{ width: "100px" }}
         >
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>&gt;3</MenuItem>
+          <MenuItem value={3}>3 +</MenuItem>
         </Select>
       </FormControl>
       <FormControl>
@@ -39,19 +56,61 @@ export default function FlightOptions() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={tripType}
+          className="flex flex-row items-center"
+          defaultValue={"1"}
           label="Trip type"
-          onChange={handleTripChange}
-          style={{ width: "150px" }}
+          onChange={(e: SelectChangeEvent) => handleFlightOption(e, "tripType")}
+          style={{ minWidth: "175px", display: "flex" }}
+          MenuProps={{
+            classes: {
+              paper: "max-h-64",
+            },
+          }}
+          renderValue={(selected) => (
+            <div className="flex items-center">
+              {selected === "1" && (
+                <span className="mr-2">
+                  <HiOutlineArrowsRightLeft />
+                </span>
+              )}
+              {selected === "2" && (
+                <span className="mr-2">
+                  <HiArrowSmallRight />
+                </span>
+              )}
+              {selected === "3" && (
+                <span className="mr-2">
+                  <HiArrowsPointingOut />
+                </span>
+              )}
+              <div className="whitespace-nowrap">
+                {selected === "1"
+                  ? "Round trip"
+                  : selected === "2"
+                  ? "One way"
+                  : "Multi-city"}
+              </div>
+            </div>
+          )}
         >
-          <MenuItem value={1}>
-            <span style={{ marginRight: "0.5rem" }}>
+          <MenuItem value={"1"}>
+            <span className="mr-2">
               <HiOutlineArrowsRightLeft />
             </span>
             Round trip
           </MenuItem>
-          <MenuItem value={2}>One way</MenuItem>
-          <MenuItem value={3}>Multi-city</MenuItem>
+          <MenuItem value={"2"}>
+            <span className="mr-2">
+              <HiArrowSmallRight />
+            </span>
+            One way
+          </MenuItem>
+          <MenuItem value={"3"}>
+            <span className="mr-2">
+              <HiArrowsPointingOut />
+            </span>
+            Multi-city
+          </MenuItem>
         </Select>
       </FormControl>
       <FormControl>
@@ -59,9 +118,11 @@ export default function FlightOptions() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={classType}
+          defaultValue={"1"}
           label="Flight class"
-          onChange={handleClassChange}
+          onChange={(e: SelectChangeEvent) =>
+            handleFlightOption(e, "classType")
+          }
           style={{ width: "150px" }}
         >
           <MenuItem value={1}>Economy</MenuItem>
