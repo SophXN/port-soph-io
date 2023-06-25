@@ -15,6 +15,9 @@ export default function TabGroup() {
   };
   const [departureAirport, setDepartureAirport] = useState(defaultState);
   const [arrivalAirport, setArrivalAirport] = useState(defaultState);
+  const [tripType, setTripType] = useState("one way");
+  const [classType, setClassType] = useState("economy");
+  const [passengerCount, setPassengerCount] = useState(1);
 
   const handleAirportSelection = (direction: string, airport: Airport) => {
     if (direction === "departure") {
@@ -33,7 +36,11 @@ export default function TabGroup() {
         title={<span>&nbsp;&nbsp;&nbsp;Air</span>}
       >
         <div className="rounded-lg bg-white-50 shadow-lg w-full">
-          <FlightOptions />
+          <FlightOptions
+            setTripType={setTripType}
+            setClassType={setClassType}
+            setPassengerCount={setPassengerCount}
+          />
           <AirportSearch
             direction={Direction.Departure}
             handleAirportSelection={handleAirportSelection}
@@ -42,9 +49,17 @@ export default function TabGroup() {
             direction={Direction.Arrival}
             handleAirportSelection={handleAirportSelection}
           />
-          <div className="flex justify-center">
-            <FlightCard departure={departureAirport} arrival={arrivalAirport} />
-          </div>
+          {departureAirport.name !== "" && arrivalAirport.name !== "" && (
+            <div className="flex justify-center">
+              <FlightCard
+                departure={departureAirport}
+                arrival={arrivalAirport}
+                passengerCount={passengerCount}
+                tripType={tripType}
+                classType={classType}
+              />
+            </div>
+          )}
         </div>
       </Tabs.Item>
       <Tabs.Item icon={AiFillCar} title={<span>&nbsp;&nbsp;&nbsp;Road</span>}>

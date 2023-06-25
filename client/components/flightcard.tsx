@@ -19,10 +19,16 @@ interface RequestBody {
 type FlghtCardProps = {
   departure: Airport;
   arrival: Airport;
+  passengerCount: number;
+  tripType: string;
+  classType: string;
 };
 export default function FlghtCard({
   departure,
   arrival,
+  passengerCount,
+  tripType,
+  classType,
 }: FlghtCardProps): JSX.Element | null {
   const [estimate, setEstimate] = useState<number | null>(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,14 +39,14 @@ export default function FlghtCard({
         {
           from: departure.code,
           to: arrival.code,
-          passengers: 1,
-          class: "economy",
+          passengers: passengerCount,
+          class: classType,
         },
         {
           from: departure.code,
           to: arrival.code,
-          passengers: 1,
-          class: "economy",
+          passengers: passengerCount,
+          class: classType,
         },
       ],
     };
@@ -64,7 +70,9 @@ export default function FlghtCard({
       .catch((error) => {
         console.error(error);
       });
-  }, [arrival, departure]);
+
+    console.log("from flightCard: ", tripType);
+  }, []);
 
   if (isLoading || estimate === null) {
     return <div></div>;
@@ -74,13 +82,15 @@ export default function FlghtCard({
     <>
       <div>
         <Card>
-          <h5 className="px-5 py-2 text-xl tracking-tight text-gray-900 dark:text-white">
-            One economy roundtrip flight from {departure.name} to {arrival.name}
-            .
+          <h4 className="px-5 py-2 text-xl tracking-tight text-gray-900 dark:text-white">
+            {classType === "economy" ? "An" : "A"} {classType} {tripType} flight
+            from {departure.name} to {arrival.name} for {passengerCount}{" "}
+            {passengerCount > 1 ? "passengers" : "passenger"}, the carbon
+            estimate is: <br />
+          </h4>
+          <h5 className="px-5 py-2 text-xl text-center font-normal text-gray-700 dark:text-gray-400">
+            {estimate} kg CO2e
           </h5>
-          <p className="px-5 py-2 text-center font-normal text-gray-700 dark:text-gray-400">
-            Carbon Estimate <br /> {estimate} kg CO2e
-          </p>
         </Card>
       </div>
     </>

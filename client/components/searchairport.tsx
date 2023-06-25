@@ -21,10 +21,6 @@ const AirportSearch: React.FC<AirportSearchProps> = ({
 }) => {
   const [searchDeparture, setSearchDeparture] = useState("");
   const [searchArrival, setSearchArrival] = useState("");
-  const [selectedDeparture, setSelectedDeparture] = useState<Airport | null>(
-    null
-  );
-  const [selectedArrival, setSelectedArrival] = useState<Airport | null>(null);
   const [filteredAirports, setFilteredAirports] = useState<Airport[]>([]);
 
   const handleSearch = (
@@ -52,12 +48,10 @@ const AirportSearch: React.FC<AirportSearchProps> = ({
     currentDirection: Direction
   ) => {
     if (currentDirection === Direction.Departure) {
-      setSelectedDeparture(airport);
       setSearchDeparture(airport.name);
       setFilteredAirports([]);
       handleAirportSelection("departure", airport);
     } else if (currentDirection === Direction.Arrival) {
-      setSelectedArrival(airport);
       setSearchArrival(airport.name);
       setFilteredAirports([]);
       handleAirportSelection("arrival", airport);
@@ -144,7 +138,6 @@ const airports = [
   { code: "CLT", name: "Charlotte Douglas International Airport" },
   { code: "PHX", name: "Phoenix Sky Harbor International Airport" },
   { code: "IAH", name: "George Bush Intercontinental Airport" },
-  { code: "MUC", name: "Munich Airport" },
   { code: "MIA", name: "Miami International Airport" },
   { code: "SYD", name: "Sydney Airport" },
   { code: "DEL", name: "Indira Gandhi International Airport" },
