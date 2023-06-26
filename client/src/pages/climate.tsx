@@ -1,20 +1,25 @@
 import styles from "@/styles/Climate.module.css";
 import TabGroup from "../../components/tabgroup";
-
-export default function ClimateTest() {
+import AnimatedHeader from "../../components/planelottie";
+export default function CarbonEmissions() {
   return (
     <>
-      <div className={styles.pageWrapper}>
+      <main className="min-h-screen p-8 flex flex-col items-center justify-center py-8 px-4 md:px-8">
         <div>
-          <h1 className="mb-2 font-mono text-4xl text-gray-100 md:text-6xl">
-            Explore carbon emissions for different modes of travel.{" "}
+          <h1 className="mb-2 font-mono text-4xl text-gray-300 md:text-6xl p-4 z-9">
+            Explore carbon emissions for different modes of travel.
             <br className="block md:hidden" />
           </h1>
         </div>
-        <div className={styles.cardContainer}>
-          <TabGroup />
+        <div className="flex flex-col items-center mt-8 relative z-10">
+          <div className="shadow-sm p-4 rounded-lg backdrop-opacity-50">
+            <TabGroup />
+          </div>
         </div>
-      </div>
+        <div className="w-full z-0">
+          <AnimatedHeader />
+        </div>
+      </main>
     </>
   );
 }

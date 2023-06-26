@@ -70,8 +70,6 @@ export default function FlghtCard({
       .catch((error) => {
         console.error(error);
       });
-
-    console.log("from flightCard: ", tripType);
   }, []);
 
   if (isLoading || estimate === null) {
@@ -80,15 +78,15 @@ export default function FlghtCard({
 
   return (
     <>
-      <div>
-        <Card>
-          <h4 className="px-5 py-2 text-xl tracking-tight text-gray-900 dark:text-white">
+      <div className="mt-4">
+        <Card className="rounded-tl-none rounded-tr-none">
+          <h4 className="px-5 py-2 text-lg tracking-tight text-white font-mono">
             {classType === "economy" ? "An" : "A"} {classType} {tripType} flight
             from {departure.name} to {arrival.name} for {passengerCount}{" "}
             {passengerCount > 1 ? "passengers" : "passenger"}, the carbon
             estimate is: <br />
           </h4>
-          <h5 className="px-5 py-2 text-xl text-center font-normal text-gray-700 dark:text-gray-400">
+          <h5 className="px-5 py-2 text-xl text-center text-white font-mono">
             {estimate} kg CO2e
           </h5>
         </Card>

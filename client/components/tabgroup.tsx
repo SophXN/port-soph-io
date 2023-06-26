@@ -27,20 +27,21 @@ export default function TabGroup() {
       setArrivalAirport(airport);
     }
   };
-
   return (
-    <Tabs.Group aria-label="Tabs with icons" style="underline" className="p-4">
+    <Tabs.Group aria-label="Tabs with icons" style="underline" className="p-1">
       <Tabs.Item
         active
         icon={BsFillAirplaneFill}
         title={<span>&nbsp;&nbsp;&nbsp;Air</span>}
       >
-        <div className="rounded-lg bg-white-50 shadow-lg w-full">
+        <div className="bg-white rounded-lg shadow-md w-full mb-4">
           <FlightOptions
             setTripType={setTripType}
             setClassType={setClassType}
             setPassengerCount={setPassengerCount}
           />
+        </div>
+        <div className="bg-white rounded-lg shadow-md w-full ">
           <AirportSearch
             direction={Direction.Departure}
             handleAirportSelection={handleAirportSelection}
