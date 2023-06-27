@@ -20,3 +20,7 @@ NextJS
     [ ] FE: add multi-city calculation
 
     [ ] FE: add round trip calculation
+
+### Preview of work in progress:
+https://github.com/SophXN/port-soph-io/assets/80185757/15bffb5e-607b-43dc-b135-5718401c9de1
+
