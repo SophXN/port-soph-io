@@ -1,7 +1,7 @@
 # port-soph-io
-Portfolio of Soph
 
-## /climate Project 🌏
+## Climate Calculation for Various Modes of Transportation 🌏
+NextJS
 
 ### API
 [Climatiq API](https://www.climatiq.io/docs)
@@ -13,8 +13,10 @@ Portfolio of Soph
 
 
 ### Future Improvements | Flights
-[ ] API: Change static list of imports to API to accommodate any airports
-[ ] API: move call to backend
+    [ ] API: Change static list of imports to API to accommodate any airports
 
-[ ] FE: add multi-city calculation
-[ ] FE: add round trip calculation
+    [ ] API: move call to backend
+
+    [ ] FE: add multi-city calculation
+
+    [ ] FE: add round trip calculation
