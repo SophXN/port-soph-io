@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 export interface Airport {
   code: string;
@@ -19,91 +21,60 @@ const AirportSearch: React.FC<AirportSearchProps> = ({
   direction,
   handleAirportSelection,
 }) => {
-  const [searchDeparture, setSearchDeparture] = useState("");
-  const [searchArrival, setSearchArrival] = useState("");
-  const [filteredAirports, setFilteredAirports] = useState<Airport[]>([]);
-
-  const handleSearch = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    currentDirection: Direction
-  ) => {
-    const value = e.target.value;
-    const filtered = airports.filter(
-      (airport) =>
-        airport.name.toLowerCase().includes(value.toLowerCase()) ||
-        airport.code.toLowerCase().includes(value.toLowerCase())
-    );
-
-    if (currentDirection === Direction.Departure) {
-      setSearchDeparture(value);
-      setFilteredAirports(filtered);
-    } else if (currentDirection === Direction.Arrival) {
-      setSearchArrival(value);
-      setFilteredAirports(filtered);
-    }
-  };
-
   const handleSelectAirport = (
-    airport: Airport,
+    airport: Airport | null,
     currentDirection: Direction
   ) => {
-    if (currentDirection === Direction.Departure) {
-      setSearchDeparture(airport.name);
-      setFilteredAirports([]);
-      handleAirportSelection("departure", airport);
-    } else if (currentDirection === Direction.Arrival) {
-      setSearchArrival(airport.name);
-      setFilteredAirports([]);
-      handleAirportSelection("arrival", airport);
+    if (airport) {
+      if (currentDirection === Direction.Departure) {
+        handleAirportSelection("departure", airport);
+      } else if (currentDirection === Direction.Arrival) {
+        handleAirportSelection("arrival", airport);
+      }
     }
   };
 
   return (
     <div className="container mx-auto p-4">
-      {direction === Direction.Departure && (
-        <div className="mt-4">
-          <h2 className="text-xl font-bold">Departure Airport</h2>
+      {direction === Direction.Departure ? (
+        <div className="mt-4 mb-1 text-xl font-bold">
+          <h2>Departure Airport</h2>
+        </div>
+      ) : (
+        <div className="text-xl font-bold mb-1">
+          <h2>Arrival Airport</h2>
         </div>
       )}
-      {direction === Direction.Departure && (
+      {direction === Direction.Departure ? (
         <>
-          <input
-            type="text"
-            className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
-            placeholder="Where From?"
-            value={searchDeparture}
-            onChange={(e) => handleSearch(e, Direction.Departure)}
+          <Autocomplete
+            id="departure"
+            options={airports}
+            getOptionLabel={(option) => `${option.name}, ${option.code}`}
+            isOptionEqualToValue={(option, value) => option.code === value.code}
+            renderInput={(params) => (
+              <TextField {...params} label="Where From?" />
+            )}
+            onChange={(event, value) =>
+              handleSelectAirport(value, Direction.Departure)
+            }
           />
         </>
-      )}
-      {direction === Direction.Arrival && (
-        <div className="mt-4">
-          <h2 className="text-xl font-bold">Arrival Airport</h2>
-        </div>
-      )}
-      {direction === Direction.Arrival && (
+      ) : (
         <>
-          <input
-            type="text"
-            className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
-            placeholder="Where To?"
-            value={searchArrival}
-            onChange={(e) => handleSearch(e, Direction.Arrival)}
+          <Autocomplete
+            id="arrival"
+            options={airports}
+            getOptionLabel={(option) => `${option.name}, ${option.code}`}
+            isOptionEqualToValue={(option, value) => option.code === value.code}
+            renderInput={(params) => (
+              <TextField {...params} label="Where To?" />
+            )}
+            onChange={(event, value) =>
+              handleSelectAirport(value, Direction.Arrival)
+            }
           />
         </>
-      )}
-      {filteredAirports.length > 0 && (
-        <ul className="border border-gray-300 rounded px-4 py-2 mb-4 w-full">
-          {filteredAirports.map((airport) => (
-            <li
-              key={airport.code}
-              className="cursor-pointer"
-              onClick={() => handleSelectAirport(airport, direction)}
-            >
-              ({airport.code}) {airport.name}
-            </li>
-          ))}
-        </ul>
       )}
     </div>
   );

@@ -78,7 +78,7 @@ export default function FlghtCard({
 
   return (
     <>
-      <div className="mt-4">
+      <div className="mt-4 max-w-[500px]">
         <Card className="rounded-tl-none rounded-tr-none">
           <h4 className="px-5 py-2 text-lg tracking-tight text-white font-mono">
             {classType === "economy" ? "An" : "A"} {classType} {tripType} flight
@@ -86,7 +86,7 @@ export default function FlghtCard({
             {passengerCount > 1 ? "passengers" : "passenger"}, the carbon
             estimate is: <br />
           </h4>
-          <h5 className="px-5 py-2 text-xl text-center text-white font-mono">
+          <h5 className="px-5 py-4 text-xl text-center text-white font-mono">
             {estimate} kg CO2e
           </h5>
         </Card>

@@ -1,13 +1,20 @@
 # port-soph-io
-
 Portfolio of Soph
 
 ## /climate Project 🌏
 
 ### API
-
 [Climatiq API](https://www.climatiq.io/docs)
 
+### Frontend
+1. React/Typescript
+1. Tailwind
+1. MUI
 
-### Future Improvements
-[ ] Change static list of imports to API to accommodate any airports
+
+### Future Improvements | Flights
+[ ] API: Change static list of imports to API to accommodate any airports
+[ ] API: move call to backend
+
+[ ] FE: add multi-city calculation
+[ ] FE: add round trip calculation

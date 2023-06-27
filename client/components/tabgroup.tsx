@@ -1,11 +1,9 @@
-"use client";
-
 import { Tabs } from "flowbite-react";
 import { BsFillAirplaneFill } from "react-icons/bs";
 import { AiFillCar } from "react-icons/ai";
 import AirportSearch, { Airport, Direction } from "./searchairport";
 import FlightCard from "./flightcard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FlightOptions from "./flightoptions";
 
 export default function TabGroup() {
@@ -19,6 +17,14 @@ export default function TabGroup() {
   const [classType, setClassType] = useState("economy");
   const [passengerCount, setPassengerCount] = useState(1);
 
+  useEffect(() => {}, [
+    departureAirport,
+    arrivalAirport,
+    passengerCount,
+    tripType,
+    classType,
+  ]);
+
   const handleAirportSelection = (direction: string, airport: Airport) => {
     if (direction === "departure") {
       setDepartureAirport(airport);
@@ -27,21 +33,26 @@ export default function TabGroup() {
       setArrivalAirport(airport);
     }
   };
+
   return (
-    <Tabs.Group aria-label="Tabs with icons" style="underline" className="p-1">
+    <Tabs.Group
+      aria-label="Tabs with icons"
+      style="underline"
+      className="w-full p-1"
+    >
       <Tabs.Item
         active
         icon={BsFillAirplaneFill}
         title={<span>&nbsp;&nbsp;&nbsp;Air</span>}
       >
-        <div className="bg-white rounded-lg shadow-md w-full mb-4">
+        <div className="bg-white rounded-lg shadow-md mb-4">
           <FlightOptions
             setTripType={setTripType}
             setClassType={setClassType}
             setPassengerCount={setPassengerCount}
           />
         </div>
-        <div className="bg-white rounded-lg shadow-md w-full ">
+        <div className="bg-white rounded-lg shadow-md">
           <AirportSearch
             direction={Direction.Departure}
             handleAirportSelection={handleAirportSelection}
@@ -51,15 +62,17 @@ export default function TabGroup() {
             handleAirportSelection={handleAirportSelection}
           />
           {departureAirport.name !== "" && arrivalAirport.name !== "" && (
-            <div className="flex justify-center">
-              <FlightCard
-                departure={departureAirport}
-                arrival={arrivalAirport}
-                passengerCount={passengerCount}
-                tripType={tripType}
-                classType={classType}
-              />
-            </div>
+            <>
+              <div className="">
+                <FlightCard
+                  departure={departureAirport}
+                  arrival={arrivalAirport}
+                  passengerCount={passengerCount}
+                  tripType={tripType}
+                  classType={classType}
+                />
+              </div>
+            </>
           )}
         </div>
       </Tabs.Item>

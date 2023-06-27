@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,11 +9,10 @@ import {
   HiArrowSmallRight,
   HiArrowsPointingOut,
 } from "react-icons/hi2";
-import TextField from "@mui/material/TextField";
 
 interface FlightOptionsProps {
-  setTripType: Dispatch<SetStateAction<string>>; //(event: string) => {};
-  setClassType: Dispatch<SetStateAction<string>>; //(event: string) => {};
+  setTripType: Dispatch<SetStateAction<string>>;
+  setClassType: Dispatch<SetStateAction<string>>;
   setPassengerCount: Dispatch<SetStateAction<number>>;
 }
 export default function FlightOptions({
@@ -121,7 +114,7 @@ export default function FlightOptions({
             </span>
             One way
           </MenuItem>
-          <MenuItem value={"multi-city"}>
+          <MenuItem disabled value={"multi-city"}>
             <span className="mr-2">
               <HiArrowsPointingOut />
             </span>
